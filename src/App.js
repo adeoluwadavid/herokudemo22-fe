@@ -3,6 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const[name,setName] = React.useState("")
+  React.useEffect(() => {
+    fetch('http://herokudemo22.herokuapp.com/api/get')
+    .then(res => res.text())
+    .then(data => setName(data))
+    .catch(err => console.log(err))
+  }, [])
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +25,7 @@ function App() {
         >
           Learn React
         </a>
+        {name}
       </header>
     </div>
   );
